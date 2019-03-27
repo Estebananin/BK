@@ -11,11 +11,11 @@ import javax.persistence.Persistence;
 public final class EMF {
 	
 	private static EntityManagerFactory emfInstance;
-        private static final String Tiempo = "Tiempo";
+        private static final String Selfplan = "Selfplan";
 	
 	public static EntityManagerFactory get() {
             if (emfInstance == null) {
-                emfInstance = Persistence.createEntityManagerFactory(Tiempo);
+                emfInstance = Persistence.createEntityManagerFactory(Selfplan);
             }
             
             return emfInstance;

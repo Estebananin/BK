@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 
 import model.manager.EMF;
 import model.vo.Actividad;
-import model.vo.Usuario;
 
 public class ActiviDao {
 
@@ -35,7 +34,7 @@ public class ActiviDao {
 		try {
 			em = EMF.get().createEntityManager();
 			em.getTransaction().begin();
-			em.find(Usuario.class, p.getNombre());
+			em.find(Actividad.class, p.getNombre());
 			em.getTransaction().commit();
 			em.refresh(p);
 			em.close();
@@ -49,6 +48,29 @@ public class ActiviDao {
 
 		}
 
+	}
+	
+public boolean updateObject(Actividad p) {
+		
+		try {
+			em = EMF.get().createEntityManager();
+			em.getTransaction().begin();
+			em.merge(p);
+			em.getTransaction().commit();
+			em.refresh(p);
+			em.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (em != null && em.isOpen())
+				em.close();
+
+		}
+		
+	
 	}
 
 }
